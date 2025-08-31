@@ -374,6 +374,26 @@ mShare.addEventListener('click', async ()=>{
   if (p) openModal(p);
 })();
 </script>
+  <!-- Quick-view modal -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="modal-img"><img id="mImg" alt=""></div>
+    <div class="modal-body">
+      <div class="modal-h">
+        <h3 id="mTitle"></h3>
+        <button class="xbtn" id="mClose">Close ✕</button>
+      </div>
+      <div class="small" id="mPrice"></div>
+      <div class="meta" id="mMeta"></div>
+      <p class="desc" id="mDesc"></p>
+      <div class="actions">
+        <a class="btn" id="mChat" target="_blank" rel="noreferrer">Order this on Facebook</a>
+        <button class="xbtn ghost" id="mShare">Copy link to this item</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 
