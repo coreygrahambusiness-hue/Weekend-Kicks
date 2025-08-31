@@ -264,51 +264,117 @@ section{padding:36px 0}.pill{display:inline-block;padding:.35rem .6rem;border-ra
 const FB = "https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr";
 
 // Products (with slugs, descriptions, quantities)
-  {slug:"bear-shirt", name:"Manfinity Dauomo Men's Cartoon Bear Shirt", category:"Clothing", price:5000, was:5500, sizes:["S","M","L"], quantity:3, img:"bear-shirt.webp", tags:["NEW"], desc:"Soft cotton tee with mini cartoon-bear chest print. Easy daily wear — relaxed fit."},
-  {slug:"panda-shirt", name:"Manfinity Hypemode Men's Panda Shirt", category:"Clothing", price:5000, was:"", sizes:["S","M","L"], quantity:1, img:"panda-shirt.webp", tags:["NEW"], desc:"Playful panda pocket graphic. Smooth fabric and breathable for warm days."},
-  {slug:"jeans", name:"Men's Casual Washed Jeans", category:"Clothing", price:9500, was:10500, sizes:["S","M","L"], quantity:3, img:"jeans.webp", tags:[], desc:"Light-wash denim with subtle distressing. Tapered fit — everyday essential."},
-  {slug:"smile-shirt", name:"Manfinity Hypemode Mens Letter & Cartoon Shirt", category:"Clothing", price:5000, was:"", sizes:["S","M","L"], quantity:2, img:"smile-shirt.webp", tags:[], desc:"Bold smile graphic at back, comfy cotton blend. Street-ready statement tee."},
-  {slug:"striped-shirt", name:"Mens Letter & Striped Print Shirt", category:"Clothing", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt.webp", tags:["NEW"], desc:"Vertical stripe button-up — easy to dress up or down. Lightweight drape."},
-  {slug:"striped-shirt2", name:"Manfinity Homme Men's Striped Print Shirt", category:"Clothing", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt2.webp", tags:[], desc:"Classic blue/tan stripe with short sleeves. Relaxed vacation vibe."},
-  {slug:"drawstring-pants", name:"Manfinity Homme Men's Drawstring Pants", category:"Clothing", price:7000, was:"", sizes:["S","M","L"], quantity:3, img:"drawstring-pants.webp", tags:["NEW"], desc:"Lightweight jogger with elastic cuff and drawstring waist. Comfy everyday fit."},
-  {slug:"summer-letter-shirt", name:"Joysei Men's Summer Letter Print Shirt", category:"Clothing", price:6000, was:"", sizes:["S","M","L"], quantity:3, img:"summer-letter-shirt.webp", tags:[], desc:"Graphic patchwork tee with positive statements. Soft hand-feel."},
-  {slug:"grid-pants", name:"Manfinity Homme Men Grid Print Pants", category:"Clothing", price:7500, was:"", sizes:["M"], quantity:1, img:"grid-pants.webp", tags:[], desc:"Slim jogger in neutral grid pattern. Style with tees or button-ups."}
+const products = [
+  {
+    slug: "bear-shirt",
+    name: "Manfinity Dauomo Men's Cartoon Bear Shirt",
+    category: "Clothing",
+    price: 5000,
+    was: 5500,
+    sizes: ["S","M","L"],
+    quantity: 3,
+    img: "bear-shirt.webp",
+    tags: ["NEW"],
+    desc: "Soft cotton tee with mini cartoon-bear chest print. Easy daily wear — relaxed fit."
+  },
+  {
+    slug: "panda-shirt",
+    name: "Manfinity Hypemode Men's Panda Shirt",
+    category: "Clothing",
+    price: 5000,
+    was: "",
+    sizes: ["S","M","L"],
+    quantity: 1,
+    img: "panda-shirt.webp",
+    tags: ["NEW"],
+    desc: "Playful panda pocket graphic. Smooth fabric and breathable for warm days."
+  },
+  {
+    slug: "jeans",
+    name: "Men's Casual Washed Jeans",
+    category: "Clothing",
+    price: 9500,
+    was: 10500,
+    sizes: ["S","M","L"],
+    quantity: 3,
+    img: "jeans.webp",
+    tags: [],
+    desc: "Light-wash denim with subtle distressing. Tapered fit — everyday essential."
+  },
+  {
+    slug: "smile-shirt",
+    name: "Manfinity Hypemode Mens Letter & Cartoon Shirt",
+    category: "Clothing",
+    price: 5000,
+    was: "",
+    sizes: ["S","M","L"],
+    quantity: 2,
+    img: "smile-shirt.webp",
+    tags: [],
+    desc: "Bold smile graphic at back, comfy cotton blend. Street-ready statement tee."
+  },
+  {
+    slug: "striped-shirt",
+    name: "Mens Letter & Striped Print Shirt",
+    category: "Clothing",
+    price: 5000,
+    was: "",
+    sizes: ["S","M","L"],
+    quantity: 3,
+    img: "striped-shirt.webp",
+    tags: ["NEW"],
+    desc: "Vertical stripe button-up — easy to dress up or down. Lightweight drape."
+  },
+  {
+    slug: "striped-shirt2",
+    name: "Manfinity Homme Men's Striped Print Shirt",
+    category: "Clothing",
+    price: 5000,
+    was: "",
+    sizes: ["S","M","L"],
+    quantity: 3,
+    img: "striped-shirt2.webp",
+    tags: [],
+    desc: "Classic blue/tan stripe with short sleeves. Relaxed vacation vibe."
+  },
+  {
+    slug: "drawstring-pants",
+    name: "Manfinity Homme Men's Drawstring Pants",
+    category: "Clothing",
+    price: 7000,
+    was: "",
+    sizes: ["S","M","L"],
+    quantity: 3,
+    img: "drawstring-pants.webp",
+    tags: ["NEW"],
+    desc: "Lightweight jogger with elastic cuff and drawstring waist. Comfy everyday fit."
+  },
+  {
+    slug: "summer-letter-shirt",
+    name: "Joysei Men's Summer Letter Print Shirt",
+    category: "Clothing",
+    price: 6000,
+    was: "",
+    sizes: ["S","M","L"],
+    quantity: 3,
+    img: "summer-letter-shirt.webp",
+    tags: [],
+    desc: "Graphic patchwork tee with positive statements. Soft hand-feel."
+  },
+  {
+    slug: "grid-pants",
+    name: "Manfinity Homme Men Grid Print Pants",
+    category: "Clothing",
+    price: 7500,
+    was: "",
+    sizes: ["M"],
+    quantity: 1,
+    img: "grid-pants.webp",
+    tags: [],
+    desc: "Slim jogger in neutral grid pattern. Style with tees or button-ups."
+  }
 ];
 
-// Money + badges
-const count = document.getElementById('count');
-const grid  = document.getElementById('grid');
-function money(x){return `$${Number(x).toLocaleString('en-US')}`}
-function badge(p){return (p.tags||[]).includes('NEW') ? '<span class="badge">NEW</span>' : ''}
-function qty(p){return `<span class="qty">Qty: ${p.quantity||0}</span>`}
-
-// Render cards – inline onclick (guaranteed to work)
-function render(list){
-  grid.innerHTML='';
-  list.forEach(p=>{
-    const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.setAttribute('data-slug', p.slug);
-    card.setAttribute('onclick', "openModalBySlug(this.dataset.slug)");
-    card.innerHTML = `${badge(p)}${qty(p)}
-      <div class="img"><picture><source srcset="${webp}" type="image/webp">
-        <img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'">
-      </picture></div>
-      <div style="padding:12px 14px">
-        <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:center">
-          <strong>${p.name}</strong>
-          <span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
-        </div>
-        <div style="margin-top:.4rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <small class="pill">Sizes: ${(p.sizes||[]).join(', ')}</small>
-          <small class="pill">${p.category}</small>
-        </div>
-        <div style="display:flex;gap:.5rem;margin-top:.6rem">
-          <span class="pill">Tap for details →</span>
-          <a class="btn" href="${FB}" onclick="event.stopPropagation()" target="_blank" rel="noreferrer">Order</a>
-        </div>
-      </div>`;
     grid.appendChild(card);
   });
   count.textContent = `${list.length} item${list.length!==1?'s':''}`;
