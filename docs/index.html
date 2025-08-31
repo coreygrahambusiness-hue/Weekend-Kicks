@@ -196,10 +196,11 @@ section{padding:36px 0}.pill{display:inline-block;padding:.35rem .6rem;border-ra
   </div>
 </div>
 
+
 <script>
 const FB = "https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr";
 
-// Products now include description + quantity
+// Products (with slugs, descriptions, quantities)
 const products = [
   {slug:"bear-shirt", name:"Manfinity Dauomo Men's Cartoon Bear Shirt", category:"Clothing", price:5000, was:5500, sizes:["S","M","L"], quantity:3, img:"bear-shirt.webp", tags:["NEW"], desc:"Soft cotton tee with mini cartoon-bear chest print. Easy daily wear — relaxed fit."},
   {slug:"panda-shirt", name:"Manfinity Hypemode Men's Panda Shirt", category:"Clothing", price:5000, was:"", sizes:["S","M","L"], quantity:1, img:"panda-shirt.webp", tags:["NEW"], desc:"Playful panda pocket graphic. Smooth fabric and breathable for warm days."},
@@ -212,23 +213,30 @@ const products = [
   {slug:"grid-pants", name:"Manfinity Homme Men Grid Print Pants", category:"Clothing", price:7500, was:"", sizes:["M"], quantity:1, img:"grid-pants.webp", tags:[], desc:"Slim jogger in neutral grid pattern. Style with tees or button-ups."}
 ];
 
-const grid = document.getElementById('grid');
+// Money + badges
 const count = document.getElementById('count');
+const grid  = document.getElementById('grid');
 function money(x){return `$${Number(x).toLocaleString('en-US')}`}
 function badge(p){return (p.tags||[]).includes('NEW') ? '<span class="badge">NEW</span>' : ''}
 function qty(p){return `<span class="qty">Qty: ${p.quantity||0}</span>`}
 
+// Render cards – inline onclick (guaranteed to work)
 function render(list){
   grid.innerHTML='';
-  list.forEach((p,i)=>{
-    const el=document.createElement('article'); el.className='card'; el.dataset.i=i;
-    const webp='images/'+p.img; const jpg='images/'+p.img.replace('.webp','.jpeg');
-    el.innerHTML=`${badge(p)}${qty(p)}
+  list.forEach(p=>{
+    const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.setAttribute('data-slug', p.slug);
+    card.setAttribute('onclick', "openModalBySlug(this.dataset.slug)");
+    card.innerHTML = `${badge(p)}${qty(p)}
       <div class="img"><picture><source srcset="${webp}" type="image/webp">
-      <img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'"></picture></div>
+        <img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'">
+      </picture></div>
       <div style="padding:12px 14px">
         <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:center">
-          <strong>${p.name}</strong><span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
+          <strong>${p.name}</strong>
+          <span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
         </div>
         <div style="margin-top:.4rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <small class="pill">Sizes: ${(p.sizes||[]).join(', ')}</small>
@@ -239,14 +247,13 @@ function render(list){
           <a class="btn" href="${FB}" onclick="event.stopPropagation()" target="_blank" rel="noreferrer">Order</a>
         </div>
       </div>`;
-    el.addEventListener('click',()=>openModal(p));
-    grid.appendChild(el);
+    grid.appendChild(card);
   });
-  count.textContent=`${list.length} item${list.length!==1?'s':''}`;
+  count.textContent = `${list.length} item${list.length!==1?'s':''}`;
 }
 render(products);
 
-/* ---------- Quick-view modal logic ---------- */
+/* -------- Modal wiring -------- */
 const modal  = document.getElementById('modal');
 const mImg   = document.getElementById('mImg');
 const mTitle = document.getElementById('mTitle');
@@ -257,34 +264,36 @@ const mChat  = document.getElementById('mChat');
 const mClose = document.getElementById('mClose');
 const mShare = document.getElementById('mShare');
 
+function openModalBySlug(slug){
+  const p = products.find(x=>x.slug===slug);
+  if (!p) return;
+  openModal(p);
+}
+
 function openModal(p){
-  const webp = 'images/'+p.img;
-  const jpg  = 'images/'+p.img.replace('.webp','.jpeg');
-  mImg.src   = jpg; mImg.onerror = ()=> mImg.src = webp;
+  const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
+  mImg.src = jpg; mImg.onerror=()=>{ mImg.src = webp; };
   mTitle.textContent = p.name;
   mPrice.innerHTML = `${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)} · <span class="small">Qty: ${p.quantity}</span>`;
-  mMeta.innerHTML = `
-    <span class="pill">${p.category}</span>
-    <span class="pill">Sizes: ${(p.sizes||[]).join(', ')}</span>`;
+  mMeta.innerHTML = `<span class="pill">${p.category}</span> <span class="pill">Sizes: ${(p.sizes||[]).join(', ')}</span>`;
   mDesc.textContent = p.desc || '';
   mChat.href = FB + (FB.includes('?') ? '&' : '?') + 'product=' + encodeURIComponent(p.name);
-  // Deep link (so you can share this item)
-  const url = new URL(location.href);
-  url.searchParams.set('product', p.slug);
-  history.replaceState(null, '', url.toString());
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden','false');
+
+  const url = new URL(location.href); url.searchParams.set('product', p.slug);
+  history.replaceState(null,'',url.toString());
+
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
 }
+
 function closeModal(){
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden','true');
-  const url = new URL(location.href);
-  url.searchParams.delete('product');
+  modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+  const url = new URL(location.href); url.searchParams.delete('product');
   history.replaceState(null,'',url.toString());
 }
+
 mClose.onclick = closeModal;
-modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
 
 mShare.addEventListener('click', async ()=>{
   try{
@@ -294,13 +303,14 @@ mShare.addEventListener('click', async ()=>{
   }catch{ alert('Could not copy link'); }
 });
 
-// Open the modal if a direct link like ?product=slug is used
-(function autoOpenFromUrl(){
+// Support direct links like ?product=jeans
+(function autoOpen(){
   const slug = new URL(location.href).searchParams.get('product');
-  if(!slug) return;
+  if (!slug) return;
   const p = products.find(x=>x.slug===slug);
-  if(p) openModal(p);
+  if (p) openModal(p);
 })();
 </script>
 </body>
 </html>
+
