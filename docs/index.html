@@ -424,12 +424,36 @@ const products = [
     desc: "Slim jogger in neutral grid pattern. Style with tees or button-ups."
   }
 ];
+// 🔎 Filtering logic
+function applyFilters() {
+  const query = document.getElementById("q").value.toLowerCase();
+  const cat = document.getElementById("cat").value;
+  const size = document.getElementById("size").value;
+  const price = document.getElementById("price").value;
+
+  let filtered = products.filter(p => {
+    const matchesQuery = p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+    const matchesCat = (cat === "all") || (p.category === cat);
+    const matchesSize = (size === "all") || (p.sizes.includes(size));
+    const matchesPrice = (price === "all") || (p.price <= parseInt(price));
+    return matchesQuery && matchesCat && matchesSize && matchesPrice;
+  });
+
+  render(filtered);
+}
+
+// attach listeners
+["q","cat","size","price"].forEach(id=>{
+  document.getElementById(id).addEventListener("input", applyFilters);
+  document.getElementById(id).addEventListener("change", applyFilters);
+});
 
     grid.appendChild(card);
   });
   count.textContent = `${list.length} item${list.length!==1?'s':''}`;
 }
-render(products);
+applyFilters();
+
 
 /* -------- Modal wiring -------- */
 const modal  = document.getElementById('modal');
