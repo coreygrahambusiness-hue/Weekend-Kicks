@@ -95,6 +95,21 @@ section{padding:36px 0}
 @media(max-width:900px){
   .modal-card { grid-template-columns: 1fr; }
 }
+/* Footer */
+.footer { background:#0c111a; border-top:1px solid #1f2330; margin-top:40px; }
+.footwrap { width:min(1200px,92%); margin:auto; padding:28px 0; }
+.footgrid { display:grid; grid-template-columns:2fr 1fr 1.2fr; gap:1.25rem; }
+.foot h4 { margin:0 0 .6rem 0; font-size:1rem; }
+.foot p, .foot a, .foot li, .foot small { color:#a7b0c0; }
+.foot a:hover { color:#fff; }
+.foot ul { list-style:none; padding:0; margin:.2rem 0 0; display:grid; gap:.35rem; }
+.foot .brand img { height:40px; border-radius:8px; }
+.footbar { border-top:1px solid #1f2330; padding:12px 0; margin-top:16px; display:flex; justify-content:space-between; align-items:center; gap:.75rem; }
+.social { display:flex; gap:.5rem; }
+.social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:#121722; border:1px solid #242a3a; }
+.social a:hover { background:#171c27; }
+@media (max-width:900px){ .footgrid { grid-template-columns:1fr 1fr; } }
+@media (max-width:640px){ .footgrid { grid-template-columns:1fr; } }
 
 </style>
   /* Footer */
