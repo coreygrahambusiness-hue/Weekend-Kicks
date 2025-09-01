@@ -11,19 +11,31 @@
 html,body{margin:0;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
 .container{width:min(1200px,92%);margin:auto}
+
+/* Header */
 header{position:sticky;top:0;z-index:10;background:#0e1014cc;border-bottom:1px solid #1f2330;backdrop-filter:blur(8px)}
 .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
 .brand{display:flex;gap:.6rem;align-items:center;font-weight:700}
 .brand img{height:44px;border-radius:8px}
 .nav .btn{background:var(--brand);color:#fff;padding:.6rem 1rem;border-radius:999px}
-.hero{padding:60px 0;background:radial-gradient(1200px 600px at 70% -10%, rgba(255,61,90,.15), transparent),radial-gradient(900px 600px at 10% -20%, rgba(8,217,162,.12), transparent)}
+
+/* Hero */
+.hero{padding:60px 0;background:
+  radial-gradient(1200px 600px at 70% -10%, rgba(255,61,90,.15), transparent),
+  radial-gradient(900px 600px at 10% -20%, rgba(8,217,162,.12), transparent)}
 .hero h1{font-size:clamp(2rem,4vw,3rem);margin:.2rem 0 1rem}
 .lead{color:var(--muted)}
 .cta .btn{display:inline-block;margin-right:.6rem;background:linear-gradient(135deg,var(--brand),#ff6f84);padding:.8rem 1rem;border-radius:12px;color:#fff;font-weight:700}
 .cta .mint{background:linear-gradient(135deg,var(--brand-2),#14f0b2);color:#071b15}
+
+/* Sections / chips */
 section{padding:36px 0}
 .pill{display:inline-block;padding:.35rem .6rem;border-radius:999px;font-size:.75rem;background:#121722;border:1px solid #2a3040;color:#a7b0c0}
+
+/* Grid & cards */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr)}}
 .card{background:var(--card);border:1px solid #242a3a;border-radius:16px;overflow:hidden;position:relative;cursor:pointer}
 .card .img{aspect-ratio:4/3;background:linear-gradient(135deg,#202636,#131826)}
 .card picture,.card img{width:100%;height:100%;object-fit:cover}
@@ -31,10 +43,20 @@ section{padding:36px 0}
 .qty{position:absolute;top:10px;right:10px;background:#0c111a;color:#d0d7e5;border:1px solid #2a3040;padding:.25rem .5rem;border-radius:999px;font-size:.7rem;font-weight:800}
 .price{font-weight:700}
 .price s{color:#8b94a7;margin-right:.35rem}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr)}}
 
-/* Modal */
+/* Sold out styles */
+.card.soldout{opacity:.65;filter:grayscale(100%)}
+.badge.sold{background:#50586b}
+
+/* Filters / Search */
+.controls{display:flex;gap:.6rem;flex-wrap:wrap;margin:10px 0 16px}
+.controls input,.controls select{
+  padding:10px 12px;border-radius:10px;border:1px solid #2a3040;
+  background:#0c111a;color:#fff;min-width:160px
+}
+.controls input{flex:1;min-width:220px}
+
+/* Modal (quick-view) */
 .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);z-index:50}
 .modal.open{display:grid}
 .modal-card{width:min(980px,92%);background:#0f141d;border:1px solid #242a3a;border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr}
@@ -52,35 +74,50 @@ section{padding:36px 0}
 .small{font-size:.9rem;color:#a7b0c0}
 @media(max-width:900px){.modal-card{grid-template-columns:1fr}}
 
-/* Controls */
-.controls{display:flex;gap:.6rem;flex-wrap:wrap;margin:10px 0 16px}
-.controls input,.controls select{padding:10px 12px;border-radius:10px;border:1px solid #2a3040;background:#0c111a;color:#fff;min-width:160px}
-.controls input{flex:1;min-width:220px}
-
 /* Footer */
-.footer{background:#0c111a;border-top:1px solid #1f2330;margin-top:40px}
-.footwrap{width:min(1200px,92%);margin:auto;padding:28px 0}
-.footgrid{display:grid;grid-template-columns:2fr 1fr 1.2fr;gap:1.25rem}
-.foot h4{margin:0 0 .6rem 0;font-size:1rem}
-.foot p,.foot a,.foot li,.foot small{color:#a7b0c0}
-.foot a:hover{color:#fff}
-.foot ul{list-style:none;padding:0;margin:.2rem 0 0;display:grid;gap:.35rem}
-.foot .brand img{height:40px;border-radius:8px}
-.footbar{border-top:1px solid #1f2330;padding:12px 0;margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:.75rem}
-.social{display:flex;gap:.5rem}
-.social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#121722;border:1px solid #242a3a}
-.social a:hover{background:#171c27}
-@media(max-width:900px){.footgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.footgrid{grid-template-columns:1fr}}
+.footer { background:#0c111a; border-top:1px solid #1f2330; margin-top:40px; }
+.footwrap { width:min(1200px,92%); margin:auto; padding:28px 0; }
+.footgrid { display:grid; grid-template-columns:2fr 1fr 1.2fr; gap:1.25rem; }
+.foot h4 { margin:0 0 .6rem 0; font-size:1rem; }
+.foot p, .foot a, .foot li, .foot small { color:#a7b0c0; }
+.foot a:hover { color:#fff; }
+.foot ul { list-style:none; padding:0; margin:.2rem 0 0; display:grid; gap:.35rem; }
+.foot .brand img { height:40px; border-radius:8px; }
+.footbar { border-top:1px solid #1f2330; padding:12px 0; margin-top:16px; display:flex; justify-content:space-between; align-items:center; gap:.75rem; }
+.social { display:flex; gap:.5rem; }
+.social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:#121722; border:1px solid #242a3a; }
+.social a:hover { background:#171c27; }
+@media (max-width:900px){ .footgrid { grid-template-columns:1fr 1fr; } }
+@media (max-width:640px){ .footgrid { grid-template-columns:1fr; } }
+
+/* Owner Mode */
+.owner-flag{position:fixed;top:10px;right:10px;background:#121722;border:1px solid #2a3040;color:#a7b0c0;padding:.35rem .6rem;border-radius:999px;font-size:.75rem;display:none;z-index:60}
+.owner-flag.show{display:inline-block}
+.owner-controls{display:none;gap:.4rem;align-items:center;margin-top:.6rem;flex-wrap:wrap}
+.card.owner .owner-controls{display:flex}
+.owner-controls .mini{padding:.35rem .5rem;border-radius:8px;border:1px solid #2a3040;background:#0c111a;color:#fff}
+.owner-controls .qtyview{padding:.35rem .5rem;border-radius:8px;border:1px dashed #2a3040;background:#0c111a;color:#a7b0c0}
+.owner-panel{position:fixed;right:12px;bottom:12px;display:none;z-index:70}
+.owner-panel .wrap{background:#0f141d;border:1px solid #242a3a;border-radius:12px;padding:10px 12px;color:#a7b0c0}
+.owner-panel.show{display:block}
+.owner-panel button{border:1px solid #2a3040;background:#121722;color:#fff;border-radius:10px;padding:.4rem .7rem;cursor:pointer}
 </style>
 </head>
-<body>
-<header><div class="container nav">
-  <a class="brand" href="#home"><img src="weekend-kicks-logo.jpeg" alt="logo"><div>WeekEnd Kicks & Clothing<br><small style="color:var(--muted);font-weight:600">Guyana • Online • Affordable</small></div></a>
-  <a class="btn" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Message on Facebook</a>
-</div></header>
 
-<main class="hero">
+<body>
+<span id="ownerFlag" class="owner-flag">Owner mode</span>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <img src="weekend-kicks-logo.jpeg" alt="logo">
+      <div>WeekEnd Kicks & Clothing<br><small style="color:var(--muted);font-weight:600">Guyana • Online • Affordable</small></div>
+    </a>
+    <a class="btn" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Message on Facebook</a>
+  </div>
+</header>
+
+<main class="hero" id="home">
   <div class="container">
     <h1>Streetwear, sneakers, and everyday essentials — at prices you’ll love.</h1>
     <p class="lead">We’re a Guyanese, online-based boutique bringing you stylish clothing and accessories with flexible pre-order options.</p>
@@ -95,12 +132,35 @@ section{padding:36px 0}
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
     <h2>Browse Stock</h2><span class="pill" id="count">0 items</span>
   </div>
+
+  <!-- Filters -->
   <div class="controls" id="filters">
     <input id="q" type="search" placeholder="Search (e.g., jeans, panda, striped)…">
-    <select id="cat"><option value="all">All categories</option><option value="Shirts">Shirts</option><option value="Pants">Pants</option></select>
-    <select id="size"><option value="all">Any size</option><option value="S">S</option><option value="M">M</option><option value="L">L</option></select>
-    <select id="price"><option value="all">Any price</option><option value="6000">≤ $6,000</option><option value="7000">≤ $7,000</option><option value="8000">≤ $8,000</option><option value="10000">≤ $10,000</option></select>
+    <select id="cat">
+      <option value="all">All categories</option>
+      <option value="Shirts">Shirts</option>
+      <option value="Pants">Pants</option>
+    </select>
+    <select id="size">
+      <option value="all">Any size</option>
+      <option value="S">S</option><option value="M">M</option><option value="L">L</option>
+    </select>
+    <select id="price">
+      <option value="all">Any price</option>
+      <option value="6000">≤ $6,000</option>
+      <option value="7000">≤ $7,000</option>
+      <option value="8000">≤ $8,000</option>
+      <option value="10000">≤ $10,000</option>
+    </select>
+    <!-- Stock filter -->
+    <select id="stock">
+      <option value="all">Any stock</option>
+      <option value="in">In stock</option>
+      <option value="out">Sold out</option>
+    </select>
   </div>
+
+  <!-- Product grid -->
   <div class="grid" id="grid"></div>
 </div></section>
 
@@ -124,81 +184,311 @@ section{padding:36px 0}
   </div>
 </div>
 
+<!-- Owner floating panel -->
+<div id="ownerPanel" class="owner-panel">
+  <div class="wrap">
+    <div style="margin-bottom:.5rem">Owner Panel</div>
+    <button id="resetOverrides">Reset overrides</button>
+    <div style="margin-top:.5rem;font-size:.8rem;color:#a7b0c0">Toggle with <strong>Shift+O</strong></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footwrap">
+    <div class="footgrid">
+      <div class="foot">
+        <a class="brand" href="#home">
+          <img src="weekend-kicks-logo.jpeg" alt="Weekend Kicks logo">
+          <div>
+            WeekEnd Kicks & Clothing<br>
+            <small style="color:#a7b0c0">Guyana • Online • Affordable</small>
+          </div>
+        </a>
+        <p class="cta" style="margin-top:.6rem;">
+          <a class="btn" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Message us on Facebook</a>
+        </p>
+      </div>
+
+      <div class="foot">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#shop">Shop In-Stock</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="foot">
+        <h4>Contact</h4>
+        <ul>
+          <li>📍 Georgetown, Guyana</li>
+          <li>🕘 Mon–Sat: 9am–6pm</li>
+          <li>✉️ <a href="mailto:weekendkicksgy@gmail.com">weekendkicksgy@gmail.com</a></li>
+          <li>💬 <a href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Facebook Chat</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footbar">
+      <small>© <span id="wk-year"></span> WeekEnd Kicks & Clothing — All rights reserved.</small>
+      <div class="social">
+        <a href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">FB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <script>
+// =========================
+// WeekEnd Kicks – Single JS
+// =========================
 const FB = "https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr";
 
-const products = [
-  {slug:"bear-shirt",name:"Manfinity Dauomo Men's Cartoon Bear Shirt",category:"Shirts",price:5000,was:5500,sizes:["S","M","L"],quantity:3,img:"bear-shirt.webp",tags:["NEW"],desc:"Soft cotton tee with cartoon-bear chest print."},
-  {slug:"panda-shirt",name:"Manfinity Hypemode Men's Panda Shirt",category:"Shirts",price:5000,was:"",sizes:["S","M","L"],quantity:1,img:"panda-shirt.webp",tags:["NEW"],desc:"Playful panda pocket graphic. Smooth and breathable."},
-  {slug:"jeans",name:"Men's Casual Washed Jeans",category:"Pants",price:9500,was:10500,sizes:["S","M","L"],quantity:3,img:"jeans.webp",tags:[],desc:"Light-wash denim with tapered fit."},
-  {slug:"smile-shirt",name:"Manfinity Hypemode Mens Letter & Cartoon Shirt",category:"Shirts",price:5000,was:"",sizes:["S","M","L"],quantity:2,img:"smile-shirt.webp",tags:[],desc:"Bold smile graphic, comfy cotton blend."},
-  {slug:"striped-shirt",name:"Mens Letter & Striped Print Shirt",category:"Shirts",price:5000,was:"",sizes:["S","M","L"],quantity:3,img:"striped-shirt.webp",tags:["NEW"],desc:"Vertical stripe button-up — easy to dress up or down."},
-  {slug:"striped-shirt2",name:"Manfinity Homme Men's Striped Print Shirt",category:"Shirts",price:5000,was:"",sizes:["S","M","L"],quantity:3,img:"striped-shirt2.webp",tags:[],desc:"Classic blue/tan stripe short sleeve."},
-  {slug:"drawstring-pants",name:"Manfinity Homme Men's Drawstring Pants",category:"Pants",price:7000,was:"",sizes:["S","M","L"],quantity:3,img:"drawstring-pants.webp",tags:["NEW"],desc:"Lightweight jogger with drawstring waist."},
-  {slug:"summer-letter-shirt",name:"Joysei Men's Summer Letter Print Shirt",category:"Shirts",price:6000,was:"",sizes:["S","M","L"],quantity:3,img:"summer-letter-shirt.webp",tags:[],desc:"Graphic patchwork tee with positive vibe."},
-  {slug:"grid-pants",name:"Manfinity Homme Men Grid Print Pants",category:"Pants",price:7500,was:"",sizes:["M"],quantity:1,img:"grid-pants.webp",tags:[],desc:"Slim jogger in neutral grid pattern."}
+// DATA (base)
+const baseProducts = [
+  { slug:"bear-shirt", name:"Manfinity Dauomo Men's Cartoon Bear Shirt", category:"Shirts", price:5000, was:5500, sizes:["S","M","L"], quantity:3, img:"bear-shirt.webp", tags:["NEW"], desc:"Soft cotton tee with cartoon-bear chest print." },
+  { slug:"panda-shirt", name:"Manfinity Hypemode Men's Panda Shirt", category:"Shirts", price:5000, was:"",   sizes:["S","M","L"], quantity:0, img:"panda-shirt.webp", tags:["NEW"], desc:"Playful panda pocket graphic. Smooth and breathable." },
+  { slug:"jeans", name:"Men's Casual Washed Jeans", category:"Pants", price:9500, was:10500, sizes:["S","M","L"], quantity:3, img:"jeans.webp", tags:[], desc:"Light-wash denim with tapered fit." },
+  { slug:"smile-shirt", name:"Manfinity Hypemode Mens Letter & Cartoon Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:2, img:"smile-shirt.webp", tags:[], desc:"Bold smile graphic, comfy cotton blend." },
+  { slug:"striped-shirt", name:"Mens Letter & Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt.webp", tags:["NEW"], desc:"Vertical stripe button-up — easy to dress up or down." },
+  { slug:"striped-shirt2", name:"Manfinity Homme Men's Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt2.webp", tags:[], desc:"Classic blue/tan stripe short sleeve." },
+  { slug:"drawstring-pants", name:"Manfinity Homme Men's Drawstring Pants", category:"Pants", price:7000, was:"", sizes:["S","M","L"], quantity:3, img:"drawstring-pants.webp", tags:["NEW"], desc:"Lightweight jogger with drawstring waist." },
+  { slug:"summer-letter-shirt", name:"Joysei Men's Summer Letter Print Shirt", category:"Shirts", price:6000, was:"", sizes:["S","M","L"], quantity:3, img:"summer-letter-shirt.webp", tags:[], desc:"Graphic patchwork tee with positive vibe." },
+  { slug:"grid-pants", name:"Manfinity Homme Men Grid Print Pants", category:"Pants", price:7500, was:"", sizes:["M"], quantity:1, img:"grid-pants.webp", tags:[], desc:"Slim jogger in neutral grid pattern." }
 ];
 
-const grid=document.getElementById('grid'),count=document.getElementById('count');
-const qEl=document.getElementById('q'),catEl=document.getElementById('cat'),sizeEl=document.getElementById('size'),priceEl=document.getElementById('price');
+// Local overrides (browser only)
+const LS_KEY = 'wk_overrides';
+function readOverrides(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }catch{ return {}; }
+}
+function writeOverrides(obj){ localStorage.setItem(LS_KEY, JSON.stringify(obj||{})); }
+function getEffectiveProducts(){
+  const o = readOverrides();
+  return baseProducts.map(p=>{
+    const ov = o[p.slug] || {};
+    return {...p, ...(ov.quantity!=null?{quantity:ov.quantity}:{} )};
+  });
+}
 
-function money(x){return `$${Number(x).toLocaleString('en-US')}`;}
-function badge(p){return (p.tags||[]).includes('NEW')?'<span class="badge">NEW</span>':'';}
-function qty(p){return `<span class="qty">Qty: ${p.quantity||0}</span>`;}
+// DOM
+const grid  = document.getElementById('grid');
+const count = document.getElementById('count');
+const qEl    = document.getElementById('q');
+const catEl  = document.getElementById('cat');
+const sizeEl = document.getElementById('size');
+const priceEl= document.getElementById('price');
+const stockEl= document.getElementById('stock');
 
+const ownerFlag = document.getElementById('ownerFlag');
+const ownerPanel= document.getElementById('ownerPanel');
+const resetBtn  = document.getElementById('resetOverrides');
+
+let ownerMode = false;
+
+// Helpers
+function money(x){ return `$${Number(x).toLocaleString('en-US')}`; }
+function newBadge(p){ return (p.tags||[]).includes('NEW') ? '<span class="badge">NEW</span>' : ''; }
+
+// Render cards (with sold-out + owner controls)
 function render(list){
-  grid.innerHTML='';
+  grid.innerHTML = '';
   list.forEach(p=>{
-    const el=document.createElement('article'); el.className='card'; el.dataset.slug=p.slug;
-    const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
-    el.innerHTML=`${badge(p)}${qty(p)}
-      <div class="img"><picture><source srcset="${webp}" type="image/webp"><img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'"></picture></div>
+    const isOut = Number(p.quantity||0) <= 0;
+
+    const el = document.createElement('article');
+    el.className = 'card' + (isOut ? ' soldout' : '') + (ownerMode ? ' owner' : '');
+    el.dataset.slug = p.slug;
+
+    const webp = 'images/'+p.img, jpg = webp.replace('.webp','.jpeg');
+
+    el.innerHTML = `
+      ${isOut ? '<span class="badge sold">Sold out</span>' : newBadge(p)}
+      ${!isOut ? `<span class="qty">Qty: ${p.quantity||0}</span>` : ''}
+      <div class="img">
+        <picture>
+          <source srcset="${webp}" type="image/webp">
+          <img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'">
+        </picture>
+      </div>
       <div style="padding:12px 14px">
         <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:center">
-          <strong>${p.name}</strong><span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
+          <strong>${p.name}</strong>
+          <span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
         </div>
         <div style="margin-top:.4rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <small class="pill">Sizes: ${(p.sizes||[]).join(', ')}</small><small class="pill">${p.category}</small>
+          <small class="pill">Sizes: ${(p.sizes||[]).join(', ')}</small>
+          <small class="pill">${p.category}</small>
         </div>
         <div style="display:flex;gap:.5rem;margin-top:.6rem">
-          <span class="pill">Tap for details →</span>
-          <a class="btn" href="${FB}" onclick="event.stopPropagation()" target="_blank" rel="noreferrer">Order</a>
+          ${isOut
+            ? `<span class="pill">Unavailable — message us</span>
+               <a class="btn" href="${FB}" onclick="event.stopPropagation()" target="_blank" rel="noreferrer">Notify Me</a>`
+            : `<span class="pill">Tap for details →</span>
+               <a class="btn" href="${FB}" onclick="event.stopPropagation()" target="_blank" rel="noreferrer">Order</a>`
+          }
         </div>
-      </div>`;
+
+        <!-- Owner controls -->
+        <div class="owner-controls">
+          <button class="mini" data-act="dec">–</button>
+          <span class="qtyview">Qty: <b>${p.quantity||0}</b></span>
+          <button class="mini" data-act="inc">+</button>
+          <button class="mini" data-act="${isOut?'instock':'soldout'}">${isOut?'Mark In stock':'Mark Sold out'}</button>
+          <button class="mini" data-act="save">Save</button>
+        </div>
+      </div>
+    `;
     grid.appendChild(el);
   });
-  count.textContent=`${list.length} item${list.length!==1?'s':''}`;
+  count.textContent = `${list.length} item${list.length!==1?'s':''}`;
 }
 
-grid.addEventListener('click',e=>{
-  const card=e.target.closest('.card'); if(!card)return;
-  const slug=card.dataset.slug; if(slug) openModalBySlug(slug);
+// Card click (ignore sold-out and owner control clicks)
+grid.addEventListener('click', (e)=>{
+  const card = e.target.closest('.card');
+  if (!card) return;
+
+  // Owner control clicks
+  const btn = e.target.closest('.mini');
+  if (btn && card.classList.contains('owner')) {
+    e.stopPropagation();
+    const act = btn.dataset.act;
+    const slug = card.dataset.slug;
+    const o = readOverrides();
+    const eff = getEffectiveProducts().find(x=>x.slug===slug);
+    let q = Number((eff?.quantity)||0);
+
+    if (act==='dec') q = Math.max(0, q-1);
+    if (act==='inc') q = q+1;
+    if (act==='soldout') q = 0;
+    if (act==='instock') q = Math.max(1, q||1);
+
+    if (act==='save' || act==='dec' || act==='inc' || act==='soldout' || act==='instock') {
+      o[slug] = {...(o[slug]||{}), quantity:q};
+      writeOverrides(o);
+      applyFilters(); // re-render with new qty
+    }
+    return;
+  }
+
+  // Normal card click
+  if (card.classList.contains('soldout')) return;
+  const slug = card.dataset.slug;
+  if (slug) openModalBySlug(slug);
 });
 
+// Filters (includes stock)
 function applyFilters(){
-  const query=(qEl?.value||'').trim().toLowerCase();
-  const cat=(catEl?.value||'all'); const size=(sizeEl?.value||'all'); const price=(priceEl?.value||'all');
-  const list=products.filter(p=>{
-    const text=(p.name+' '+(p.desc||'')+' '+(p.category||'')).toLowerCase();
-    if(query && !text.includes(query)) return false;
-    if(cat!=='all' && p.category!==cat) return false;
-    if(size!=='all' && !(p.sizes||[]).includes(size)) return false;
-    if(price!=='all' && Number(p.price)>Number(price)) return false;
+  const products = getEffectiveProducts();
+  const query = (qEl?.value||'').trim().toLowerCase();
+  const cat   = (catEl?.value||'all');
+  const size  = (sizeEl?.value||'all');
+  const price = (priceEl?.value||'all');
+  const stock = (stockEl?.value||'all');
+
+  const list = products.filter(p=>{
+    const text = (p.name + ' ' + (p.desc||'') + ' ' + (p.category||'')).toLowerCase();
+    if (query && !text.includes(query)) return false;
+    if (cat !== 'all' && p.category !== cat) return false;
+    if (size !== 'all' && !(p.sizes||[]).includes(size)) return false;
+    if (price !== 'all' && Number(p.price) > Number(price)) return false;
+
+    const isOut = Number(p.quantity||0) <= 0;
+    if (stock === 'in'  && isOut) return false;
+    if (stock === 'out' && !isOut) return false;
+
     return true;
   });
+
   render(list);
 }
-[qEl,catEl,sizeEl,priceEl].forEach(el=>{if(!el)return;const evt=el.tagName==='INPUT'?'input':'change';el.addEventListener(evt,applyFilters);});
+
+// Wire controls
+[qEl,catEl,sizeEl,priceEl,stockEl].forEach(el=>{
+  if(!el) return;
+  const evt = el.tagName==='INPUT' ? 'input' : 'change';
+  el.addEventListener(evt, applyFilters);
+});
+
+// Owner mode toggle (Shift + O)
+document.addEventListener('keydown', (e)=>{
+  if (e.shiftKey && (e.key==='O' || e.key==='o')) {
+    ownerMode = !ownerMode;
+    ownerFlag.classList.toggle('show', ownerMode);
+    ownerPanel.classList.toggle('show', ownerMode);
+    applyFilters();
+  }
+});
+
+// Reset overrides
+resetBtn.addEventListener('click', ()=>{
+  writeOverrides({});
+  applyFilters();
+  alert('Overrides cleared (local only).');
+});
+
+// First paint
 applyFilters();
 
-// Modal
-const modal=document.getElementById('modal'),mImg=document.getElementById('mImg'),mTitle=document.getElementById('mTitle'),mPrice=document.getElementById('mPrice'),mMeta=document.getElementById('mMeta'),mDesc=document.getElementById('mDesc'),mChat=document.getElementById('mChat'),mClose=document.getElementById('mClose'),mShare=document.getElementById('mShare');
+// --------------------
+// MODAL (quick-view)
+// --------------------
+const modal  = document.getElementById('modal');
+const mImg   = document.getElementById('mImg');
+const mTitle = document.getElementById('mTitle');
+const mPrice = document.getElementById('mPrice');
+const mMeta  = document.getElementById('mMeta');
+const mDesc  = document.getElementById('mDesc');
+const mChat  = document.getElementById('mChat');
+const mClose = document.getElementById('mClose');
+const mShare = document.getElementById('mShare');
 
-function openModalBySlug(slug){const p=products.find(x=>x.slug===slug); if(p) openModal(p);}
+function openModalBySlug(slug){
+  const p = getEffectiveProducts().find(x=>x.slug===slug);
+  if (p) openModal(p);
+}
 function openModal(p){
   const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
-  mImg.src=jpg; mImg.onerror=()=>{mImg.src=webp;};
-  mTitle.textContent=p.name;
-  mPrice.innerHTML=`${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)} · <span class="small">Qty: ${p.quantity}</span>`;
-  mMeta.innerHTML=`<span class="pill">${p.category}</span> <span class="pill">Sizes: ${(p.sizes||[]).join(', ')}</span>`;
-  mDesc.textContent
+  mImg.src = jpg; mImg.onerror=()=>{ mImg.src = webp; };
+  mTitle.textContent = p.name;
+  mPrice.innerHTML = `${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)} · <span class="small">Qty: ${p.quantity}</span>`;
+  mMeta.innerHTML = `<span class="pill">${p.category}</span> <span class="pill">Sizes: ${(p.sizes||[]).join(', ')}</span>`;
+  mDesc.textContent = p.desc || '';
+  mChat.href = FB + (FB.includes('?') ? '&' : '?') + 'product=' + encodeURIComponent(p.name);
+
+  const url = new URL(location.href); url.searchParams.set('product', p.slug);
+  history.replaceState(null,'',url.toString());
+
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+}
+function closeModal(){
+  modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+  const url = new URL(location.href); url.searchParams.delete('product');
+  history.replaceState(null,'',url.toString());
+}
+mClose && (mClose.onclick = closeModal);
+modal  && modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+mShare && mShare.addEventListener('click', async ()=>{
+  try{
+    await navigator.clipboard.writeText(location.href);
+    mShare.textContent = 'Link copied!';
+    setTimeout(()=> mShare.textContent='Copy link to this item', 1500);
+  }catch{ alert('Could not copy link'); }
+});
+
+// Deep-link: ?product=jeans
+(function(){
+  const slug = new URL(location.href).searchParams.get('product');
+  if (!slug) return;
+  const p = getEffectiveProducts().find(x=>x.slug===slug);
+  if (p) openModal(p);
+})();
+
+// Footer year
+document.getElementById('wk-year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
