@@ -101,6 +101,33 @@ section{padding:36px 0}
 .owner-panel .wrap{background:#0f141d;border:1px solid #242a3a;border-radius:12px;padding:10px 12px;color:#a7b0c0}
 .owner-panel.show{display:block}
 .owner-panel button{border:1px solid #2a3040;background:#121722;color:#fff;border-radius:10px;padding:.4rem .7rem;cursor:pointer}
+
+/* Tabs (Shop / Reviews) */
+.tabs { display:flex; gap:.5rem; margin:8px 0 18px; }
+.tab { padding:.5rem .85rem; border-radius:999px; border:1px solid #2a3040; background:#121722; color:#a7b0c0; cursor:pointer; }
+.tab.active { color:#fff; border-color:#3a4156; background:#171c27; }
+
+/* Reviews */
+.review-card{ background:var(--card); border:1px solid #242a3a; border-radius:14px; padding:12px 14px; }
+.review-head{ display:flex; justify-content:space-between; align-items:center; gap:.5rem; }
+.stars { display:inline-flex; gap:2px; }
+.star { font-size:1rem; line-height:1; opacity:.6; cursor:pointer; }
+.star.on { opacity:1 }
+.revlist { display:grid; gap:.75rem; margin:12px 0; }
+.revmeta { color:#a7b0c0; font-size:.85rem; }
+.revtext { margin:.4rem 0 0; }
+
+/* Review form */
+.revform{ display:grid; gap:.6rem; margin-top:10px; }
+.revform input, .revform textarea, .revform select {
+  padding:10px 12px; border-radius:10px; border:1px solid #2a3040;
+  background:#0c111a; color:#fff;
+}
+.revform .row { display:flex; gap:.6rem; flex-wrap:wrap; }
+.revform button {
+  background:linear-gradient(135deg,var(--brand),#ff6f84);
+  color:#fff; padding:.7rem 1rem; border-radius:12px; font-weight:700; border:0; cursor:pointer;
+}
 </style>
 </head>
 
@@ -133,35 +160,80 @@ section{padding:36px 0}
     <h2>Browse Stock</h2><span class="pill" id="count">0 items</span>
   </div>
 
-  <!-- Filters -->
-  <div class="controls" id="filters">
-    <input id="q" type="search" placeholder="Search (e.g., jeans, panda, striped)…">
-    <select id="cat">
-      <option value="all">All categories</option>
-      <option value="Shirts">Shirts</option>
-      <option value="Pants">Pants</option>
-    </select>
-    <select id="size">
-      <option value="all">Any size</option>
-      <option value="S">S</option><option value="M">M</option><option value="L">L</option>
-    </select>
-    <select id="price">
-      <option value="all">Any price</option>
-      <option value="6000">≤ $6,000</option>
-      <option value="7000">≤ $7,000</option>
-      <option value="8000">≤ $8,000</option>
-      <option value="10000">≤ $10,000</option>
-    </select>
-    <!-- Stock filter -->
-    <select id="stock">
-      <option value="all">Any stock</option>
-      <option value="in">In stock</option>
-      <option value="out">Sold out</option>
-    </select>
+  <!-- Tabs -->
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="shop">Shop</button>
+    <button class="tab" data-tab="reviews">Reviews</button>
   </div>
 
-  <!-- Product grid -->
-  <div class="grid" id="grid"></div>
+  <!-- SHOP PANE -->
+  <div id="shopPane">
+    <!-- Filters -->
+    <div class="controls" id="filters">
+      <input id="q" type="search" placeholder="Search (e.g., jeans, panda, striped)…">
+      <select id="cat">
+        <option value="all">All categories</option>
+        <option value="Shirts">Shirts</option>
+        <option value="Pants">Pants</option>
+      </select>
+      <select id="size">
+        <option value="all">Any size</option>
+        <option value="S">S</option><option value="M">M</option><option value="L">L</option>
+      </select>
+      <select id="price">
+        <option value="all">Any price</option>
+        <option value="6000">≤ $6,000</option>
+        <option value="7000">≤ $7,000</option>
+        <option value="8000">≤ $8,000</option>
+        <option value="10000">≤ $10,000</option>
+      </select>
+      <!-- Stock filter -->
+      <select id="stock">
+        <option value="all">Any stock</option>
+        <option value="in">In stock</option>
+        <option value="out">Sold out</option>
+      </select>
+    </div>
+
+    <!-- Product grid -->
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <!-- REVIEWS PANE -->
+  <div id="reviewsPane" style="display:none">
+    <div class="review-card">
+      <div class="review-head">
+        <strong>Customer Reviews</strong>
+        <span class="pill"><span id="rev-count">0</span> reviews</span>
+      </div>
+      <div class="revlist" id="rev-list"></div>
+    </div>
+
+    <div class="review-card" style="margin-top:12px">
+      <div class="review-head">
+        <strong>Leave a review</strong>
+        <div class="stars" id="rev-stars" aria-label="Rating out of 5">
+          <span class="star on" data-v="1">★</span>
+          <span class="star on" data-v="2">★</span>
+          <span class="star on" data-v="3">★</span>
+          <span class="star on" data-v="4">★</span>
+          <span class="star on" data-v="5">★</span>
+        </div>
+      </div>
+
+      <form id="rev-form" class="revform">
+        <div class="row">
+          <input id="rev-name" type="text" placeholder="Your name (optional)">
+          <select id="rev-product">
+            <option value="">About (optional)</option>
+          </select>
+        </div>
+        <textarea id="rev-text" rows="3" placeholder="Write your review..." required></textarea>
+        <button type="submit">Submit review</button>
+        <small class="revmeta">Reviews are stored in your browser only (demo). For a live store-wide feed we can connect a sheet or database later.</small>
+      </form>
+    </div>
+  </div>
 </div></section>
 
 <!-- Quick-view modal -->
@@ -486,6 +558,126 @@ mShare && mShare.addEventListener('click', async ()=>{
   const p = getEffectiveProducts().find(x=>x.slug===slug);
   if (p) openModal(p);
 })();
+
+// ---------- Tabs: Shop / Reviews ----------
+const tabsEl = document.getElementById('tabs');
+const shopPane = document.getElementById('shopPane');
+const reviewsPane = document.getElementById('reviewsPane');
+
+tabsEl.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab');
+  if(!btn) return;
+  const tab = btn.dataset.tab;
+  tabsEl.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (tab === 'shop'){
+    shopPane.style.display = '';
+    reviewsPane.style.display = 'none';
+  } else {
+    shopPane.style.display = 'none';
+    reviewsPane.style.display = '';
+    renderReviews(); // refresh when opened
+  }
+});
+
+// ---------- Reviews (localStorage demo) ----------
+const REV_KEY = 'wk_reviews';
+const revList = document.getElementById('rev-list');
+const revCount = document.getElementById('rev-count');
+const revForm = document.getElementById('rev-form');
+const revName = document.getElementById('rev-name');
+const revText = document.getElementById('rev-text');
+const revStars = document.getElementById('rev-stars');
+const revProduct = document.getElementById('rev-product');
+
+let currentRating = 5;
+
+// Fill product dropdown from catalog
+(function fillProductOptions(){
+  try{
+    (getEffectiveProducts?.() || baseProducts || []).forEach(p=>{
+      const opt = document.createElement('option');
+      opt.value = p.slug;
+      opt.textContent = p.name;
+      revProduct.appendChild(opt);
+    });
+  }catch{ /* ignore */ }
+})();
+
+function loadReviews(){
+  try{ return JSON.parse(localStorage.getItem(REV_KEY) || '[]'); }catch{return [];}
+}
+function saveReviews(list){
+  localStorage.setItem(REV_KEY, JSON.stringify(list||[]));
+}
+function starHTML(n){
+  const arr = [1,2,3,4,5].map(i=>`<span class="star ${i<=n?'on':''}">★</span>`).join('');
+  return `<span class="stars" aria-hidden="true">${arr}</span>`;
+}
+function renderReviews(){
+  const list = loadReviews();
+  revCount.textContent = list.length;
+  if (!list.length){
+    revList.innerHTML = `<div class="revmeta">No reviews yet. Be the first to leave one!</div>`;
+    return;
+  }
+  revList.innerHTML = list.map(r=>{
+    const when = new Date(r.date).toLocaleDateString();
+    const who = r.name?.trim() ? r.name.trim() : 'Anonymous';
+    const prod = r.productName ? ` · <span>${r.productName}</span>` : '';
+    return `
+      <div class="review-item">
+        <div class="review-card">
+          <div class="review-head">
+            <div>${starHTML(r.rating)}</div>
+            <div class="revmeta">${who} · ${when}${prod}</div>
+          </div>
+          <p class="revtext">${r.text.replace(/</g,'&lt;')}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+// star picker
+revStars.addEventListener('click', e=>{
+  const el = e.target.closest('.star');
+  if(!el) return;
+  currentRating = Number(el.dataset.v);
+  [...revStars.querySelectorAll('.star')].forEach(s=>{
+    s.classList.toggle('on', Number(s.dataset.v) <= currentRating);
+  });
+});
+// submit review
+revForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const text = revText.value.trim();
+  if (!text) return;
+
+  const list = loadReviews();
+  const prodSlug = revProduct.value || '';
+  const prodObj = (getEffectiveProducts?.() || baseProducts).find(p=>p.slug===prodSlug);
+  list.unshift({
+    name: revName.value.trim(),
+    text,
+    rating: currentRating || 5,
+    product: prodSlug || '',
+    productName: prodObj?.name || '',
+    date: Date.now()
+  });
+  saveReviews(list);
+
+  // reset form
+  revText.value = '';
+  revName.value = '';
+  revProduct.value = '';
+  currentRating = 5;
+  [...revStars.querySelectorAll('.star')].forEach(s=>{
+    s.classList.toggle('on', Number(s.dataset.v) <= currentRating);
+  });
+
+  renderReviews();
+});
 
 // Footer year
 document.getElementById('wk-year').textContent = new Date().getFullYear();
