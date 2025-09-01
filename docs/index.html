@@ -11,254 +11,46 @@
 html,body{margin:0;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
 .container{width:min(1200px,92%);margin:auto}
+
+/* Header */
 header{position:sticky;top:0;z-index:10;background:#0e1014cc;border-bottom:1px solid #1f2330;backdrop-filter:blur(8px)}
 .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
 .brand{display:flex;gap:.6rem;align-items:center;font-weight:700}
 .brand img{height:44px;border-radius:8px}
 .nav .btn{background:var(--brand);color:#fff;padding:.6rem 1rem;border-radius:999px}
-.hero{padding:60px 0;background:radial-gradient(1200px 600px at 70% -10%, rgba(255,61,90,.15), transparent),radial-gradient(900px 600px at 10% -20%, rgba(8,217,162,.12), transparent)}
+
+/* Hero */
+.hero{padding:60px 0;background:
+  radial-gradient(1200px 600px at 70% -10%, rgba(255,61,90,.15), transparent),
+  radial-gradient(900px 600px at 10% -20%, rgba(8,217,162,.12), transparent)}
 .hero h1{font-size:clamp(2rem,4vw,3rem);margin:.2rem 0 1rem}
 .lead{color:var(--muted)}
 .cta .btn{display:inline-block;margin-right:.6rem;background:linear-gradient(135deg,var(--brand),#ff6f84);padding:.8rem 1rem;border-radius:12px;color:#fff;font-weight:700}
 .cta .mint{background:linear-gradient(135deg,var(--brand-2),#14f0b2);color:#071b15}
+
+/* Sections / chips */
 section{padding:36px 0}
 .pill{display:inline-block;padding:.35rem .6rem;border-radius:999px;font-size:.75rem;background:#121722;border:1px solid #2a3040;color:#a7b0c0}
+
+/* Grid & cards */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.card{background:var(--card);border:1px solid #242a3a;border-radius:16px;overflow:hidden;position:relative}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--card);border:1px solid #242a3a;border-radius:16px;overflow:hidden;position:relative;cursor:pointer}
 .card .img{aspect-ratio:4/3;background:linear-gradient(135deg,#202636,#131826)}
 .card picture,.card img{width:100%;height:100%;object-fit:cover}
 .badge{position:absolute;top:10px;left:10px;background:var(--brand);color:#fff;padding:.25rem .5rem;border-radius:999px;font-size:.7rem;font-weight:800}
 .qty{position:absolute;top:10px;right:10px;background:#0c111a;color:#d0d7e5;border:1px solid #2a3040;padding:.25rem .5rem;border-radius:999px;font-size:.7rem;font-weight:800}
 .price{font-weight:700}
 .price s{color:#8b94a7;margin-right:.35rem}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr)}}
-  /* Modal (quick-view) */
-.modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  place-items: center;
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(2px);
-  z-index: 50;
+
+/* Filters / Search */
+.controls{display:flex;gap:.6rem;flex-wrap:wrap;margin:10px 0 16px}
+.controls input,.controls select{
+  padding:10px 12px;border-radius:10px;border:1px solid #2a3040;
+  background:#0c111a;color:#fff;min-width:160px
 }
-.modal.open { display: grid; }
-
-.modal-card {
-  width: min(980px,92%);
-  background: #0f141d;
-  border: 1px solid #242a3a;
-  border-radius: 18px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-}
-
-.modal-img { background: #0c111a; }
-.modal-img img { width: 100%; height: 100%; object-fit: cover; }
-
-.modal-body { padding: 18px 20px; }
-
-.modal-h { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
-.modal-h h3 { margin: 0; font-size: 1.2rem; }
-
-.xbtn {
-  border: 0;
-  background: #151a23;
-  color: #d0d7e5;
-  border: 1px solid #2a3040;
-  padding: .4rem .6rem;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0; }
-
-.actions { display: flex; gap: .6rem; margin-top: 12px; flex-wrap: wrap; }
-.actions .btn {
-  background: linear-gradient(135deg,var(--brand),#ff6f84);
-  color: #fff;
-  padding: .7rem 1rem;
-  border-radius: 12px;
-  font-weight: 700;
-}
-.actions .ghost {
-  background: #0c111a;
-  border: 1px solid #2a3040;
-  color: #d0d7e5;
-}
-
-.desc { color: var(--muted); line-height: 1.5; margin-top: .3rem; }
-.small { font-size: .9rem; color: #a7b0c0; }
-
-@media(max-width:900px){
-  .modal-card { grid-template-columns: 1fr; }
-}
-
-
-</style>
-
-</head>
-<body>
-<header><div class="container nav">
-  <a class="brand" href="#home"><img src="weekend-kicks-logo.jpeg" alt="logo"><div>WeekEnd Kicks & Clothing<br><small style="color:var(--muted);font-weight:600">Guyana • Online • Affordable</small></div></a>
-  <a class="btn" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Message on Facebook</a>
-</div></header>
-
-<main class="hero">
-  <div class="container">
-    <h1>Streetwear, sneakers, and everyday essentials — at prices you’ll love.</h1>
-    <p class="lead">We’re a Guyanese, online-based boutique bringing you stylish clothing and accessories with flexible pre-order options.</p>
-    <div class="cta">
-      <a class="btn" href="#shop">Shop In-Stock</a>
-      <a class="btn mint" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Message on Facebook</a>
-    </div>
-  </div>
-</main>
-
-<section id="shop"><div class="container">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-    <h2>Browse Stock</h2><span class="pill" id="count">0 items</span>
-  </div>
-
-  <!-- 🔎 Filter controls -->
-  <div class="controls" id="filters">
-    <input id="q" type="search" placeholder="Search (e.g., jeans, panda, striped)…">
-    <select id="cat">
-      <option value="all">All categories</option>
-      <option value="Shirts">Shirts</option>
-      <option value="Pants">Pants</option>
-    </select>
-    <select id="size">
-      <option value="all">Any size</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-    </select>
-    <select id="price">
-      <option value="all">Any price</option>
-      <option value="6000">≤ $6,000</option>
-      <option value="7000">≤ $7,000</option>
-      <option value="8000">≤ $8,000</option>
-      <option value="10000">≤ $10,000</option>
-    </select>
-  </div>
-
-  <!-- 🛍️ Product grid -->
-  <div class="grid" id="grid"></div>
-</div></section>
-
-
-<script>
-const FB = "https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr";
-
-const products = [
-  { slug:"bear-shirt", name:"Manfinity Dauomo Men's Cartoon Bear Shirt", category:"Shirts", price:5000, was:5500, sizes:["S","M","L"], quantity:3, img:"bear-shirt.webp", tags:["NEW"], desc:"Soft cotton tee with cartoon-bear chest print." },
-  { slug:"panda-shirt", name:"Manfinity Hypemode Men's Panda Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:1, img:"panda-shirt.webp", tags:["NEW"], desc:"Playful panda pocket graphic. Smooth and breathable." },
-  { slug:"jeans", name:"Men's Casual Washed Jeans", category:"Pants", price:9500, was:10500, sizes:["S","M","L"], quantity:3, img:"jeans.webp", tags:[], desc:"Light-wash denim with tapered fit." },
-  { slug:"smile-shirt", name:"Manfinity Hypemode Mens Letter & Cartoon Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:2, img:"smile-shirt.webp", tags:[], desc:"Bold smile graphic, comfy cotton blend." },
-  { slug:"striped-shirt", name:"Mens Letter & Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt.webp", tags:["NEW"], desc:"Vertical stripe button-up — easy to dress up or down." },
-  { slug:"striped-shirt2", name:"Manfinity Homme Men's Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt2.webp", tags:[], desc:"Classic blue/tan stripe short sleeve." },
-  { slug:"drawstring-pants", name:"Manfinity Homme Men's Drawstring Pants", category:"Pants", price:7000, was:"", sizes:["S","M","L"], quantity:3, img:"drawstring-pants.webp", tags:["NEW"], desc:"Lightweight jogger with drawstring waist." },
-  { slug:"summer-letter-shirt", name:"Joysei Men's Summer Letter Print Shirt", category:"Shirts", price:6000, was:"", sizes:["S","M","L"], quantity:3, img:"summer-letter-shirt.webp", tags:[], desc:"Graphic patchwork tee with positive vibe." },
-  { slug:"grid-pants", name:"Manfinity Homme Men Grid Print Pants", category:"Pants", price:7500, was:"", sizes:["M"], quantity:1, img:"grid-pants.webp", tags:[], desc:"Slim jogger in neutral grid pattern." }
-];
-
-const grid = document.getElementById('grid');
-const count = document.getElementById('count');
-
-function money(x){ return `$${Number(x).toLocaleString('en-US')}`; }
-function badge(p){ return (p.tags||[]).includes('NEW') ? '<span class="badge">NEW</span>' : ''; }
-function qty(p){ return `<span class="qty">Qty: ${p.quantity||0}</span>`; }
-
-function render(list){
-  grid.innerHTML = '';
-  list.forEach(p=>{
-    const el=document.createElement('article'); el.className='card';
-    const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
-    el.innerHTML=`${badge(p)}${qty(p)}
-      <div class="img"><picture><source srcset="${webp}" type="image/webp">
-      <img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'"></picture></div>
-      <div style="padding:12px 14px">
-        <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:center">
-          <strong>${p.name}</strong>
-          <span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
-        </div>
-        <div style="margin-top:.4rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <small class="pill">Sizes: ${(p.sizes||[]).join(', ')}</small>
-          <small class="pill">${p.category}</small>
-        </div>
-        <div style="display:flex;gap:.5rem;margin-top:.6rem">
-          <button class="btn" onclick="openModalBySlug('${p.slug}')">Quick View</button>
-        </div>
-      </div>`;
-    grid.appendChild(el);
-  });
-  count.textContent = `${list.length} item${list.length!==1?'s':''}`;
-}
-
-// 🔎 Filtering
-function applyFilters(){
-  const query = document.getElementById("q")?.value.toLowerCase() || '';
-  const cat = document.getElementById("cat")?.value || "all";
-  const size = document.getElementById("size")?.value || "all";
-  const price = document.getElementById("price")?.value || "all";
-
-  let filtered = products.filter(p=>{
-    const matchesQuery = p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
-    const matchesCat = (cat==="all") || (p.category===cat);
-    const matchesSize = (size==="all") || (p.sizes.includes(size));
-    const matchesPrice = (price==="all") || (p.price <= parseInt(price));
-    return matchesQuery && matchesCat && matchesSize && matchesPrice;
-  });
-
-  render(filtered);
-}
-["q","cat","size","price"].forEach(id=>{
-  const el=document.getElementById(id);
-  if(el){
-    el.addEventListener("input", applyFilters);
-    el.addEventListener("change", applyFilters);
-  }
-});
-
-// Initial render
-applyFilters();
-</script>
-
-</script>
-</body>
-</html>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WeekEnd Kicks & Clothing</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{--bg:#0e1014;--card:#151a23;--muted:#a7b0c0;--brand:#ff3d5a;--brand-2:#08d9a2;--text:#f5f7fb;}
-*{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,Arial,sans-serif}
-a{color:inherit;text-decoration:none} .container{width:min(1200px,92%);margin:auto}
-header{position:sticky;top:0;z-index:10;background:#0e1014cc;border-bottom:1px solid #1f2330;backdrop-filter:blur(8px)}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
-.brand{display:flex;gap:.6rem;align-items:center;font-weight:700}.brand img{height:44px;border-radius:8px}
-.nav .btn{background:var(--brand);color:#fff;padding:.6rem 1rem;border-radius:999px}
-.hero{padding:60px 0;background:radial-gradient(1200px 600px at 70% -10%, rgba(255,61,90,.15), transparent),radial-gradient(900px 600px at 10% -20%, rgba(8,217,162,.12), transparent)}
-.hero h1{font-size:clamp(2rem,4vw,3rem);margin:.2rem 0 1rem}.lead{color:var(--muted)}
-.cta .btn{display:inline-block;margin-right:.6rem;background:linear-gradient(135deg,var(--brand),#ff6f84);padding:.8rem 1rem;border-radius:12px;color:#fff;font-weight:700}
-.cta .mint{background:linear-gradient(135deg,var(--brand-2),#14f0b2);color:#071b15}
-section{padding:36px 0}.pill{display:inline-block;padding:.35rem .6rem;border-radius:999px;font-size:.75rem;background:#121722;border:1px solid #2a3040;color:#a7b0c0}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.card{background:var(--card);border:1px solid #242a3a;border-radius:16px;overflow:hidden;position:relative;cursor:pointer}
-.card .img{aspect-ratio:4/3;background:linear-gradient(135deg,#202636,#131826)}
-.card picture,.card img{width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;top:10px;left:10px;background:var(--brand);color:#fff;padding:.25rem .5rem;border-radius:999px;font-size:.7rem;font-weight:800}
-.qty{position:absolute;top:10px;right:10px;background:#0c111a;color:#d0d7e5;border:1px solid #2a3040;padding:.25rem .5rem;border-radius:999px;font-size:.7rem;font-weight:800}
-.price{font-weight:700}.price s{color:#8b94a7;margin-right:.35rem}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}} @media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr)}}
+.controls input{flex:1;min-width:220px}
 
 /* Modal (quick-view) */
 .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);z-index:50}
@@ -277,14 +69,8 @@ section{padding:36px 0}.pill{display:inline-block;padding:.35rem .6rem;border-ra
 .desc{color:var(--muted);line-height:1.5;margin-top:.3rem}
 .small{font-size:.9rem;color:#a7b0c0}
 @media(max-width:900px){.modal-card{grid-template-columns:1fr}}
- /* Filters / Search */
-.controls{display:flex;gap:.6rem;flex-wrap:wrap;margin:10px 0 16px}
-.controls input,.controls select{
-  padding:10px 12px;border-radius:10px;border:1px solid #2a3040;
-  background:#0c111a;color:#fff;min-width:160px
-}
-.controls input{flex:1;min-width:220px}
-  /* Footer */
+
+/* Footer */
 .footer { background:#0c111a; border-top:1px solid #1f2330; margin-top:40px; }
 .footwrap { width:min(1200px,92%); margin:auto; padding:28px 0; }
 .footgrid { display:grid; grid-template-columns:2fr 1fr 1.2fr; gap:1.25rem; }
@@ -298,17 +84,22 @@ section{padding:36px 0}.pill{display:inline-block;padding:.35rem .6rem;border-ra
 .social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:#121722; border:1px solid #242a3a; }
 .social a:hover { background:#171c27; }
 @media (max-width:900px){ .footgrid { grid-template-columns:1fr 1fr; } }
-@media (max-width:640px){ .footgrid { grid-template-columns:1fr; } }  
-
+@media (max-width:640px){ .footgrid { grid-template-columns:1fr; } }
 </style>
 </head>
-<body>
-<header><div class="container nav">
-  <a class="brand" href="#home"><img src="weekend-kicks-logo.jpeg" alt="logo"><div>WeekEnd Kicks & Clothing<br><small style="color:var(--muted);font-weight:600">Guyana • Online • Affordable</small></div></a>
-  <a class="btn" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Message on Facebook</a>
-</div></header>
 
-<main class="hero">
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <img src="weekend-kicks-logo.jpeg" alt="logo">
+      <div>WeekEnd Kicks & Clothing<br><small style="color:var(--muted);font-weight:600">Guyana • Online • Affordable</small></div>
+    </a>
+    <a class="btn" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Message on Facebook</a>
+  </div>
+</header>
+
+<main class="hero" id="home">
   <div class="container">
     <h1>Streetwear, sneakers, and everyday essentials — at prices you’ll love.</h1>
     <p class="lead">We’re a Guyanese, online-based boutique bringing you stylish clothing and accessories with flexible pre-order options.</p>
@@ -323,6 +114,29 @@ section{padding:36px 0}.pill{display:inline-block;padding:.35rem .6rem;border-ra
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
     <h2>Browse Stock</h2><span class="pill" id="count">0 items</span>
   </div>
+
+  <!-- Filters -->
+  <div class="controls" id="filters">
+    <input id="q" type="search" placeholder="Search (e.g., jeans, panda, striped)…">
+    <select id="cat">
+      <option value="all">All categories</option>
+      <option value="Shirts">Shirts</option>
+      <option value="Pants">Pants</option>
+    </select>
+    <select id="size">
+      <option value="all">Any size</option>
+      <option value="S">S</option><option value="M">M</option><option value="L">L</option>
+    </select>
+    <select id="price">
+      <option value="all">Any price</option>
+      <option value="6000">≤ $6,000</option>
+      <option value="7000">≤ $7,000</option>
+      <option value="8000">≤ $8,000</option>
+      <option value="10000">≤ $10,000</option>
+    </select>
+  </div>
+
+  <!-- Product grid -->
   <div class="grid" id="grid"></div>
 </div></section>
 
@@ -346,229 +160,6 @@ section{padding:36px 0}.pill{display:inline-block;padding:.35rem .6rem;border-ra
   </div>
 </div>
 
-
-<script>
-const FB = "https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr";
-
-// Products (with slugs, descriptions, quantities)
-const products = [
-  {
-    slug: "bear-shirt",
-    name: "Manfinity Dauomo Men's Cartoon Bear Shirt",
-    category: "Clothing",
-    price: 5000,
-    was: 5500,
-    sizes: ["S","M","L"],
-    quantity: 3,
-    img: "bear-shirt.webp",
-    tags: ["NEW"],
-    desc: "Soft cotton tee with mini cartoon-bear chest print. Easy daily wear — relaxed fit."
-  },
-  {
-    slug: "panda-shirt",
-    name: "Manfinity Hypemode Men's Panda Shirt",
-    category: "Clothing",
-    price: 5000,
-    was: "",
-    sizes: ["S","M","L"],
-    quantity: 1,
-    img: "panda-shirt.webp",
-    tags: ["NEW"],
-    desc: "Playful panda pocket graphic. Smooth fabric and breathable for warm days."
-  },
-  {
-    slug: "jeans",
-    name: "Men's Casual Washed Jeans",
-    category: "Clothing",
-    price: 9500,
-    was: 10500,
-    sizes: ["S","M","L"],
-    quantity: 3,
-    img: "jeans.webp",
-    tags: [],
-    desc: "Light-wash denim with subtle distressing. Tapered fit — everyday essential."
-  },
-  {
-    slug: "smile-shirt",
-    name: "Manfinity Hypemode Mens Letter & Cartoon Shirt",
-    category: "Clothing",
-    price: 5000,
-    was: "",
-    sizes: ["S","M","L"],
-    quantity: 2,
-    img: "smile-shirt.webp",
-    tags: [],
-    desc: "Bold smile graphic at back, comfy cotton blend. Street-ready statement tee."
-  },
-  {
-    slug: "striped-shirt",
-    name: "Mens Letter & Striped Print Shirt",
-    category: "Clothing",
-    price: 5000,
-    was: "",
-    sizes: ["S","M","L"],
-    quantity: 3,
-    img: "striped-shirt.webp",
-    tags: ["NEW"],
-    desc: "Vertical stripe button-up — easy to dress up or down. Lightweight drape."
-  },
-  {
-    slug: "striped-shirt2",
-    name: "Manfinity Homme Men's Striped Print Shirt",
-    category: "Clothing",
-    price: 5000,
-    was: "",
-    sizes: ["S","M","L"],
-    quantity: 3,
-    img: "striped-shirt2.webp",
-    tags: [],
-    desc: "Classic blue/tan stripe with short sleeves. Relaxed vacation vibe."
-  },
-  {
-    slug: "drawstring-pants",
-    name: "Manfinity Homme Men's Drawstring Pants",
-    category: "Clothing",
-    price: 7000,
-    was: "",
-    sizes: ["S","M","L"],
-    quantity: 3,
-    img: "drawstring-pants.webp",
-    tags: ["NEW"],
-    desc: "Lightweight jogger with elastic cuff and drawstring waist. Comfy everyday fit."
-  },
-  {
-    slug: "summer-letter-shirt",
-    name: "Joysei Men's Summer Letter Print Shirt",
-    category: "Clothing",
-    price: 6000,
-    was: "",
-    sizes: ["S","M","L"],
-    quantity: 3,
-    img: "summer-letter-shirt.webp",
-    tags: [],
-    desc: "Graphic patchwork tee with positive statements. Soft hand-feel."
-  },
-  {
-    slug: "grid-pants",
-    name: "Manfinity Homme Men Grid Print Pants",
-    category: "Clothing",
-    price: 7500,
-    was: "",
-    sizes: ["M"],
-    quantity: 1,
-    img: "grid-pants.webp",
-    tags: [],
-    desc: "Slim jogger in neutral grid pattern. Style with tees or button-ups."
-  }
-];
-// 🔎 Filtering logic
-function applyFilters() {
-  const query = document.getElementById("q").value.toLowerCase();
-  const cat = document.getElementById("cat").value;
-  const size = document.getElementById("size").value;
-  const price = document.getElementById("price").value;
-
-  let filtered = products.filter(p => {
-    const matchesQuery = p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
-    const matchesCat = (cat === "all") || (p.category === cat);
-    const matchesSize = (size === "all") || (p.sizes.includes(size));
-    const matchesPrice = (price === "all") || (p.price <= parseInt(price));
-    return matchesQuery && matchesCat && matchesSize && matchesPrice;
-  });
-
-  render(filtered);
-}
-
-// attach listeners
-["q","cat","size","price"].forEach(id=>{
-  document.getElementById(id).addEventListener("input", applyFilters);
-  document.getElementById(id).addEventListener("change", applyFilters);
-});
-
-    grid.appendChild(card);
-  });
-  count.textContent = `${list.length} item${list.length!==1?'s':''}`;
-}
-applyFilters();
-
-
-/* -------- Modal wiring -------- */
-const modal  = document.getElementById('modal');
-const mImg   = document.getElementById('mImg');
-const mTitle = document.getElementById('mTitle');
-const mPrice = document.getElementById('mPrice');
-const mMeta  = document.getElementById('mMeta');
-const mDesc  = document.getElementById('mDesc');
-const mChat  = document.getElementById('mChat');
-const mClose = document.getElementById('mClose');
-const mShare = document.getElementById('mShare');
-
-function openModalBySlug(slug){
-  const p = products.find(x=>x.slug===slug);
-  if (!p) return;
-  openModal(p);
-}
-
-function openModal(p){
-  const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
-  mImg.src = jpg; mImg.onerror=()=>{ mImg.src = webp; };
-  mTitle.textContent = p.name;
-  mPrice.innerHTML = `${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)} · <span class="small">Qty: ${p.quantity}</span>`;
-  mMeta.innerHTML = `<span class="pill">${p.category}</span> <span class="pill">Sizes: ${(p.sizes||[]).join(', ')}</span>`;
-  mDesc.textContent = p.desc || '';
-  mChat.href = FB + (FB.includes('?') ? '&' : '?') + 'product=' + encodeURIComponent(p.name);
-
-  const url = new URL(location.href); url.searchParams.set('product', p.slug);
-  history.replaceState(null,'',url.toString());
-
-  modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
-}
-
-function closeModal(){
-  modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
-  const url = new URL(location.href); url.searchParams.delete('product');
-  history.replaceState(null,'',url.toString());
-}
-
-mClose.onclick = closeModal;
-modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
-
-mShare.addEventListener('click', async ()=>{
-  try{
-    await navigator.clipboard.writeText(location.href);
-    mShare.textContent = 'Link copied!';
-    setTimeout(()=> mShare.textContent='Copy link to this item', 1500);
-  }catch{ alert('Could not copy link'); }
-});
-
-// Support direct links like ?product=jeans
-(function autoOpen(){
-  const slug = new URL(location.href).searchParams.get('product');
-  if (!slug) return;
-  const p = products.find(x=>x.slug===slug);
-  if (p) openModal(p);
-})();
-</script>
-  <!-- Quick-view modal -->
-<div class="modal" id="modal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true">
-    <div class="modal-img"><img id="mImg" alt=""></div>
-    <div class="modal-body">
-      <div class="modal-h">
-        <h3 id="mTitle"></h3>
-        <button class="xbtn" id="mClose">Close ✕</button>
-      </div>
-      <div class="small" id="mPrice"></div>
-      <div class="meta" id="mMeta"></div>
-      <p class="desc" id="mDesc"></p>
-      <div class="actions">
-        <a class="btn" id="mChat" target="_blank" rel="noreferrer">Order this on Facebook</a>
-        <button class="xbtn ghost" id="mShare">Copy link to this item</button>
-      </div>
-    </div>
-  </div>
-</div>
 <footer class="footer">
   <div class="footwrap">
     <div class="footgrid">
@@ -613,10 +204,155 @@ mShare.addEventListener('click', async ()=>{
     </div>
   </div>
 </footer>
-<script>
-  document.getElementById('wk-year').textContent = new Date().getFullYear();
-</script>
 
+<script>
+// =========================
+// WeekEnd Kicks – Single JS
+// =========================
+const FB = "https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr";
+
+// DATA
+const products = [
+  { slug:"bear-shirt", name:"Manfinity Dauomo Men's Cartoon Bear Shirt", category:"Shirts", price:5000, was:5500, sizes:["S","M","L"], quantity:3, img:"bear-shirt.webp", tags:["NEW"], desc:"Soft cotton tee with cartoon-bear chest print." },
+  { slug:"panda-shirt", name:"Manfinity Hypemode Men's Panda Shirt", category:"Shirts", price:5000, was:"",   sizes:["S","M","L"], quantity:1, img:"panda-shirt.webp", tags:["NEW"], desc:"Playful panda pocket graphic. Smooth and breathable." },
+  { slug:"jeans", name:"Men's Casual Washed Jeans", category:"Pants", price:9500, was:10500, sizes:["S","M","L"], quantity:3, img:"jeans.webp", tags:[], desc:"Light-wash denim with tapered fit." },
+  { slug:"smile-shirt", name:"Manfinity Hypemode Mens Letter & Cartoon Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:2, img:"smile-shirt.webp", tags:[], desc:"Bold smile graphic, comfy cotton blend." },
+  { slug:"striped-shirt", name:"Mens Letter & Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt.webp", tags:["NEW"], desc:"Vertical stripe button-up — easy to dress up or down." },
+  { slug:"striped-shirt2", name:"Manfinity Homme Men's Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt2.webp", tags:[], desc:"Classic blue/tan stripe short sleeve." },
+  { slug:"drawstring-pants", name:"Manfinity Homme Men's Drawstring Pants", category:"Pants", price:7000, was:"", sizes:["S","M","L"], quantity:3, img:"drawstring-pants.webp", tags:["NEW"], desc:"Lightweight jogger with drawstring waist." },
+  { slug:"summer-letter-shirt", name:"Joysei Men's Summer Letter Print Shirt", category:"Shirts", price:6000, was:"", sizes:["S","M","L"], quantity:3, img:"summer-letter-shirt.webp", tags:[], desc:"Graphic patchwork tee with positive vibe." },
+  { slug:"grid-pants", name:"Manfinity Homme Men Grid Print Pants", category:"Pants", price:7500, was:"", sizes:["M"], quantity:1, img:"grid-pants.webp", tags:[], desc:"Slim jogger in neutral grid pattern." }
+];
+
+// DOM
+const grid  = document.getElementById('grid');
+const count = document.getElementById('count');
+const qEl    = document.getElementById('q');
+const catEl  = document.getElementById('cat');
+const sizeEl = document.getElementById('size');
+const priceEl= document.getElementById('price');
+
+// Helpers
+function money(x){ return `$${Number(x).toLocaleString('en-US')}`; }
+function badge(p){ return (p.tags||[]).includes('NEW') ? '<span class="badge">NEW</span>' : ''; }
+function qty(p){   return `<span class="qty">Qty: ${p.quantity||0}</span>`; }
+
+// Render cards
+function render(list){
+  grid.innerHTML = '';
+  list.forEach(p=>{
+    const el=document.createElement('article'); el.className='card';
+    const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
+    el.innerHTML=`${badge(p)}${qty(p)}
+      <div class="img"><picture><source srcset="${webp}" type="image/webp">
+      <img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'"></picture></div>
+      <div style="padding:12px 14px">
+        <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:center">
+          <strong>${p.name}</strong>
+          <span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
+        </div>
+        <div style="margin-top:.4rem;display:flex;gap:.5rem;flex-wrap:wrap">
+          <small class="pill">Sizes: ${(p.sizes||[]).join(', ')}</small>
+          <small class="pill">${p.category}</small>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:.6rem">
+          <span class="pill">Tap for details →</span>
+          <a class="btn" href="${FB}" onclick="event.stopPropagation()" target="_blank" rel="noreferrer">Order</a>
+        </div>
+      </div>`;
+    el.addEventListener('click', ()=> openModalBySlug(p.slug)); /* click-to-open */
+    grid.appendChild(el);
+  });
+  count.textContent = `${list.length} item${list.length!==1?'s':''}`;
+}
+
+// Filters
+function applyFilters(){
+  const query = (qEl?.value||'').trim().toLowerCase();
+  const cat   = (catEl?.value||'all');
+  const size  = (sizeEl?.value||'all');
+  const price = (priceEl?.value||'all');
+
+  const list = products.filter(p=>{
+    const text = (p.name + ' ' + (p.desc||'') + ' ' + (p.category||'')).toLowerCase();
+    if (query && !text.includes(query)) return false;
+    if (cat !== 'all' && p.category !== cat) return false;
+    if (size !== 'all' && !(p.sizes||[]).includes(size)) return false;
+    if (price !== 'all' && Number(p.price) > Number(price)) return false;
+    return true;
+  });
+
+  render(list);
+}
+
+// Wire controls
+[qEl,catEl,sizeEl,priceEl].forEach(el=>{
+  if(!el) return;
+  const evt = el.tagName==='INPUT' ? 'input' : 'change';
+  el.addEventListener(evt, applyFilters);
+});
+
+// First paint
+applyFilters();
+
+// --------------------
+// MODAL (quick-view)
+// --------------------
+const modal  = document.getElementById('modal');
+const mImg   = document.getElementById('mImg');
+const mTitle = document.getElementById('mTitle');
+const mPrice = document.getElementById('mPrice');
+const mMeta  = document.getElementById('mMeta');
+const mDesc  = document.getElementById('mDesc');
+const mChat  = document.getElementById('mChat');
+const mClose = document.getElementById('mClose');
+const mShare = document.getElementById('mShare');
+
+function openModalBySlug(slug){
+  const p = products.find(x=>x.slug===slug);
+  if (p) openModal(p);
+}
+function openModal(p){
+  const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
+  mImg.src = jpg; mImg.onerror=()=>{ mImg.src = webp; };
+  mTitle.textContent = p.name;
+  mPrice.innerHTML = `${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)} · <span class="small">Qty: ${p.quantity}</span>`;
+  mMeta.innerHTML = `<span class="pill">${p.category}</span> <span class="pill">Sizes: ${(p.sizes||[]).join(', ')}</span>`;
+  mDesc.textContent = p.desc || '';
+  mChat.href = FB + (FB.includes('?') ? '&' : '?') + 'product=' + encodeURIComponent(p.name);
+
+  const url = new URL(location.href); url.searchParams.set('product', p.slug);
+  history.replaceState(null,'',url.toString());
+
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+}
+function closeModal(){
+  modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+  const url = new URL(location.href); url.searchParams.delete('product');
+  history.replaceState(null,'',url.toString());
+}
+mClose && (mClose.onclick = closeModal);
+modal  && modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+mShare && mShare.addEventListener('click', async ()=>{
+  try{
+    await navigator.clipboard.writeText(location.href);
+    mShare.textContent = 'Link copied!';
+    setTimeout(()=> mShare.textContent='Copy link to this item', 1500);
+  }catch{ alert('Could not copy link'); }
+});
+
+// Deep-link: ?product=jeans
+(function(){
+  const slug = new URL(location.href).searchParams.get('product');
+  if (!slug) return;
+  const p = products.find(x=>x.slug===slug);
+  if (p) openModal(p);
+})();
+
+// Footer year
+document.getElementById('wk-year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
-
