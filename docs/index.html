@@ -151,47 +151,82 @@ section{padding:36px 0}
 
 
 <script>
+const FB = "https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr";
+
 const products = [
-  {name:"Manfinity Dauomo Men's Cartoon Bear Shirt",category:"Clothing",price:5000,was:5500,sizes:["S","M","L"],quantity:3,img:"bear-shirt.webp",tags:["NEW"]},
-  {name:"Manfinity Hypemode Men's Panda Shirt",category:"Clothing",price:5000,was:"",sizes:["S","M","L"],quantity:1,img:"panda-shirt.webp",tags:["NEW"]},
-  {name:"Men's Casual Washed Jeans",category:"Clothing",price:9500,was:10500,sizes:["S","M","L"],quantity:3,img:"jeans.webp",tags:[]},
-  {name:"Manfinity Hypemode Mens Letter & Cartoon Shirt",category:"Clothing",price:5000,was:"",sizes:["S","M","L"],quantity:2,img:"smile-shirt.webp",tags:[]},
-  {name:"Mens Letter & Striped Print Shirt",category:"Clothing",price:5000,was:"",sizes:["S","M","L"],quantity:3,img:"striped-shirt.webp",tags:["NEW"]},
-  {name:"Manfinity Homme Men's Striped Print Shirt",category:"Clothing",price:5000,was:"",sizes:["S","M","L"],quantity:3,img:"striped-shirt2.webp",tags:[]},
-  {name:"Manfinity Homme Men's Drawstring Pants",category:"Clothing",price:7000,was:"",sizes:["S","M","L"],quantity:3,img:"drawstring-pants.webp",tags:["NEW"]},
-  {name:"Joysei Men's Summer Letter Print Shirt",category:"Clothing",price:6000,was:"",sizes:["S","M","L"],quantity:3,img:"summer-letter-shirt.webp",tags:[]},
-  {name:"Manfinity Homme Men Grid Print Pants",category:"Clothing",price:7500,was:"",sizes:["M"],quantity:1,img:"grid-pants.webp",tags:[]}
+  { slug:"bear-shirt", name:"Manfinity Dauomo Men's Cartoon Bear Shirt", category:"Shirts", price:5000, was:5500, sizes:["S","M","L"], quantity:3, img:"bear-shirt.webp", tags:["NEW"], desc:"Soft cotton tee with cartoon-bear chest print." },
+  { slug:"panda-shirt", name:"Manfinity Hypemode Men's Panda Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:1, img:"panda-shirt.webp", tags:["NEW"], desc:"Playful panda pocket graphic. Smooth and breathable." },
+  { slug:"jeans", name:"Men's Casual Washed Jeans", category:"Pants", price:9500, was:10500, sizes:["S","M","L"], quantity:3, img:"jeans.webp", tags:[], desc:"Light-wash denim with tapered fit." },
+  { slug:"smile-shirt", name:"Manfinity Hypemode Mens Letter & Cartoon Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:2, img:"smile-shirt.webp", tags:[], desc:"Bold smile graphic, comfy cotton blend." },
+  { slug:"striped-shirt", name:"Mens Letter & Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt.webp", tags:["NEW"], desc:"Vertical stripe button-up — easy to dress up or down." },
+  { slug:"striped-shirt2", name:"Manfinity Homme Men's Striped Print Shirt", category:"Shirts", price:5000, was:"", sizes:["S","M","L"], quantity:3, img:"striped-shirt2.webp", tags:[], desc:"Classic blue/tan stripe short sleeve." },
+  { slug:"drawstring-pants", name:"Manfinity Homme Men's Drawstring Pants", category:"Pants", price:7000, was:"", sizes:["S","M","L"], quantity:3, img:"drawstring-pants.webp", tags:["NEW"], desc:"Lightweight jogger with drawstring waist." },
+  { slug:"summer-letter-shirt", name:"Joysei Men's Summer Letter Print Shirt", category:"Shirts", price:6000, was:"", sizes:["S","M","L"], quantity:3, img:"summer-letter-shirt.webp", tags:[], desc:"Graphic patchwork tee with positive vibe." },
+  { slug:"grid-pants", name:"Manfinity Homme Men Grid Print Pants", category:"Pants", price:7500, was:"", sizes:["M"], quantity:1, img:"grid-pants.webp", tags:[], desc:"Slim jogger in neutral grid pattern." }
 ];
+
 const grid = document.getElementById('grid');
 const count = document.getElementById('count');
-function money(x){return `$${Number(x).toLocaleString('en-US')}`}
-function badge(p){return (p.tags||[]).includes('NEW') ? '<span class="badge">NEW</span>' : ''}
-function qty(p){return `<span class="qty">Qty: ${p.quantity||0}</span>`}
+
+function money(x){ return `$${Number(x).toLocaleString('en-US')}`; }
+function badge(p){ return (p.tags||[]).includes('NEW') ? '<span class="badge">NEW</span>' : ''; }
+function qty(p){ return `<span class="qty">Qty: ${p.quantity||0}</span>`; }
+
 function render(list){
-  grid.innerHTML='';
+  grid.innerHTML = '';
   list.forEach(p=>{
     const el=document.createElement('article'); el.className='card';
-    const webp='images/'+p.img; const jpg='images/'+p.img.replace('.webp','.jpeg');
+    const webp='images/'+p.img, jpg=webp.replace('.webp','.jpeg');
     el.innerHTML=`${badge(p)}${qty(p)}
       <div class="img"><picture><source srcset="${webp}" type="image/webp">
       <img src="${jpg}" alt="${p.name}" onerror="this.src='${webp}'"></picture></div>
       <div style="padding:12px 14px">
         <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:center">
-          <strong>${p.name}</strong><span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
+          <strong>${p.name}</strong>
+          <span class="price">${p.was?`<s>${money(p.was)}</s> `:''}${money(p.price)}</span>
         </div>
         <div style="margin-top:.4rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <small class="pill">Sizes: ${(p.sizes||[]).join(', ')}</small>
           <small class="pill">${p.category}</small>
         </div>
         <div style="display:flex;gap:.5rem;margin-top:.6rem">
-          <a class="btn" href="https://www.facebook.com/share/1AzZzbVpoE/?mibextid=wwXIfr" target="_blank" rel="noreferrer">Order on Facebook</a>
+          <button class="btn" onclick="openModalBySlug('${p.slug}')">Quick View</button>
         </div>
       </div>`;
     grid.appendChild(el);
   });
-  count.textContent=`${list.length} item${list.length!==1?'s':''}`;
+  count.textContent = `${list.length} item${list.length!==1?'s':''}`;
 }
-render(products);
+
+// 🔎 Filtering
+function applyFilters(){
+  const query = document.getElementById("q")?.value.toLowerCase() || '';
+  const cat = document.getElementById("cat")?.value || "all";
+  const size = document.getElementById("size")?.value || "all";
+  const price = document.getElementById("price")?.value || "all";
+
+  let filtered = products.filter(p=>{
+    const matchesQuery = p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+    const matchesCat = (cat==="all") || (p.category===cat);
+    const matchesSize = (size==="all") || (p.sizes.includes(size));
+    const matchesPrice = (price==="all") || (p.price <= parseInt(price));
+    return matchesQuery && matchesCat && matchesSize && matchesPrice;
+  });
+
+  render(filtered);
+}
+["q","cat","size","price"].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){
+    el.addEventListener("input", applyFilters);
+    el.addEventListener("change", applyFilters);
+  }
+});
+
+// Initial render
+applyFilters();
+</script>
+
 </script>
 </body>
 </html>
